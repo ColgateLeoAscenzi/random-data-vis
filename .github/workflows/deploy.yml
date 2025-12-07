@@ -21,7 +21,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
             cd /home/${{ secrets.EC2_USER }}/data-vis-backend/build &&
-            chmod +x all_down.sh all_up_local.sh
+            chmod +x all_up_local.sh && ./all_up_local.sh
           '
       - name: Test health
         run: |
