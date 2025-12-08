@@ -37,8 +37,8 @@ services:
       dockerfile: Dockerfile
     container_name: generatedata
     networks:
-      -backend
+      - backend
 networks:
   backend:
-    driver: bridge
     name: backend
+    driver: bridge
