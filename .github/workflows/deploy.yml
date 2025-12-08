@@ -26,4 +26,5 @@ jobs:
       - name: Test health
         run: |
           curl -f http://${{ secrets.EC2_HOST }}/generatedata/
+          sleep 5
           curl -f http://${{ secrets.EC2_HOST }}/consumer/
