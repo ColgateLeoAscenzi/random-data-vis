@@ -8,14 +8,17 @@ from confluent_kafka import Producer
 
 trade_type: list = ['Bid', 'Ask']
 sec_labels: list = ["RTX", "MLP", "NVDA", "TSLA", "PLTR"]
+sec_config = {"RTX":{"mp":80, "sp":10}, "MLP":{"mp":80, "sp":10},"NVDA":{"mp":280, "sp":10},"TSLA":{"mp":80, "sp":10},"PLTR":{"mp":90, "sp":10}}
 
 def connect_and_send(data_count: int, delay: float):
     p = Producer({'bootstrap.servers': 'broker:29092'})
     i = 0
     while(i < data_count):
-        d = {'type': random.choice(trade_type), 
-             'price': str(round(random.uniform(1.0, 100.0), 2)), 
-             'security': random.choice(sec_labels),
+        type = random.choice(trade_type)
+        sec = random.choice(sec_labels)
+        d = {'type': type, 
+             'price': str(round(random.uniform(1, sec_config[sec]["mp"] + sec_config[sec]["sp"], 2) if type == "Bid" else random.uniform(sec_config[sec]["mp"] + sec_config[sec]["sp"], 300), 2)), 
+             'security': sec,
              'order_id': str(uuid.uuid4())
              }
         print(d)
