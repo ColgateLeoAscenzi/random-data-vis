@@ -21,8 +21,10 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
             cd /home/${{ secrets.EC2_USER }}/data-vis-backend/build &&
+            chmod +x all_down.sh && ./all_down.sh &&
             chmod +x all_up.sh && ./all_up.sh
           '
+        # Wait for services to be up
       - name: Test health
         run: |
           sleep 30

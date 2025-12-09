@@ -1,10 +1,14 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from "react-router";
 import './index.css'
-import App from './App.tsx'
+import StreamDash from './components/stream/StreamDash.tsx'
+import DataTables from './DataTables.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<StreamDash />} />
+      <Route path="/all-data" element={<DataTables />} />
+    </Routes>
+  </BrowserRouter>,
 )

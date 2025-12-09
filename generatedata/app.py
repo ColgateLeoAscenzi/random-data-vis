@@ -4,13 +4,15 @@ from fastapi import FastAPI
 from confluent_kafka import Producer
 
 
-trade_type = ['Bid', 'Ask']
+trade_type: list = ['Bid', 'Ask']
+sec_labels: list = ["RTX", "MLP"]
+
 def connect_and_send(data_count: int, delay: float):
     p = Producer({'bootstrap.servers': 'broker:29092'})
     i = 0
     while(i < data_count):
-        d = {'type': random.choice(trade_type), 'price': random.uniform(1.0, 100.0), 'security': 'RTX'}
-        print(d)
+        d = {'type': random.choice(trade_type), 'price': str(round(random.uniform(1.0, 100.0), 2)), 'security': random.choice(sec_labels)}
+        # print(d)
         p.poll(0)
         if(d['type'] =="Bid"):
             p.produce('trade-bids', str(d).encode('utf-8'))
