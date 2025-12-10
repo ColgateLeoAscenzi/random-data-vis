@@ -159,7 +159,7 @@ def poll_stats():
 
 @app.post("/prepare-stats")
 def prepare_stats(data_count: int):
-    if(app.state.end_time is not None):
+    if(app.state.end_time is None):
         return {"status" : "not_ready"}
     app.state.count_total = 0
     app.state.end_time = None
