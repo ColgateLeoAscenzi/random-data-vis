@@ -24,7 +24,7 @@ def connect_and_send(data_count: int, delay: float):
         price_mid = sec_config[sec]["mp"]
         price_spread = sec_config[sec]["sp"]
 
-        price = round((price_mid - random.uniform(1,price_spread)),2) if type == "Bid" else round((price_mid+random.uniform(1,price_spread)),2)
+        price = round((price_mid - random.uniform(price_mid, price_spread//2)),2) if type == "Bid" else round((price_mid+random.uniform(price_mid,price_spread//2)),2)
         d = {'type': type, 
              'price': str(price), 
              'security': sec,
