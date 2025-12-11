@@ -11,7 +11,7 @@ docker exec -it broker /opt/kafka/bin/kafka-topics.sh --create --topic trade-ask
 echo "Created trade topics, beginning producer loop in container"
 sleep 3
 
-docker build -t consumer:latest ../server/
+docker build -t consumer:latest ../../backend/python/server/
 docker run -d --network backend --name consumer consumer
 sleep 3
 docker compose -f "../deployments/docker-compose.yml" up -d nginx

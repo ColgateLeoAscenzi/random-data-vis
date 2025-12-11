@@ -39,7 +39,7 @@ services:
       - backend
   generatedata:
     build:
-      context: "../generatedata"
+      context: "../../backend/python/generatedata"
       dockerfile: Dockerfile
     container_name: generatedata
     networks:

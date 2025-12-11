@@ -13,6 +13,6 @@ jobs:
       - name: Bring Docker containers down
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
-            cd /home/${{ secrets.EC2_USER }}/data-vis-backend/build &&
+            cd /home/${{ secrets.EC2_USER }}/data-vis-backend/infra/build &&
             chmod +x all_down.sh && ./all_down.sh
           '
